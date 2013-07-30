@@ -15,23 +15,23 @@ $('#after .content').pagination({
 ````
 
 ### Options
-* item: Items per page
+* item: Items per page,
 	default — 1
-* width: Width of 1 item
+* width: Width of 1 item,
 	default — 200px
-* height: Height of 1 item
+* height: Height of 1 item,
 	default — 200px
-* margin: Margin of 1 item
+* margin: Margin of 1 item,
 	default — 5px
-* row: Define row
+* row: Define row,
 	default — 3
-* column: Define column
+* column: Define column,
 	default — 3
-* selector: Select children to display in pages
+* selector: Select children to display in pages,
 	default — li
-* direction: Animation direction (vertical / horizontal)
+* direction: Animation direction (vertical / horizontal),
 	default — vertical
-* touch: Touch device enable
+* touch: Touch device enable,
 	default — false
-* find: Find element (if more than 1 level)
+* find: Find element (if more than 1 level),
 	default — false

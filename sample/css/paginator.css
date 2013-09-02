@@ -1,0 +1,55 @@
+.page-container {
+	position: relative;
+	overflow: hidden;
+	width: 100%;
+}
+
+.page-container ul {
+	padding: 0;
+}
+
+.page-container ul > .page-element {
+	position: relative;
+	display: none;
+	width: 100%;
+	transition: left 0.6s ease-in-out 0s;
+	-webkit-transition: left 0.6s ease-in-out 0s;
+}
+
+.page-container ul > .active,
+.page-container ul > .next,
+.page-container ul > .prev {
+	display: block;
+}
+
+.page-container ul > .active {
+	left: 0;
+}
+
+.page-container ul > .next,
+.page-container ul > .prev {
+	position: absolute;
+	top: 0;
+	width: 100%;
+} 
+
+.page-container ul > .next {
+	left: 100%;
+}
+
+.page-container ul > .prev {
+	left: -100%;
+}
+
+.page-container ul > .next.left,
+.page-container ul > .prev.right {
+	left: 0;
+}
+
+.page-container ul > .active.left {
+	left: -100%;
+}
+
+.page-container ul > .active.right {
+	left: 100%;
+}

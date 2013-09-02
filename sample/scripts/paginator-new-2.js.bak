@@ -1,0 +1,139 @@
+(function($){
+
+	var defaults = 
+	{
+		item: 1,
+		width: '200px',
+		height: '200px',
+		row: 3,
+		column: 3,
+		margin: '5px',
+		direction: 'vertical',
+		selector: 'li',
+		slideshow: false,
+		showtime: 5000,
+		controller: false,
+		touch: false,
+		find: false
+	};
+	
+	var pages;
+	var page_id = 1;
+	
+	(function(){
+	
+		var object;
+		var settings;
+		
+		function initialized(query_object, options) {
+		
+			object = query_object;
+			settings = options;
+			
+			var page_elements = build();
+			setCSS(page_elements);
+			setActiveState(page_elements);
+			
+			return page_elements;
+		};
+		
+		function build() {
+			var items = object.children(settings.selector);
+			var pages = Math.ceil( ((items.length/settings.item)*10)/10 ); // Roundup page value
+
+			var canvas = $('<div />').addClass('page-canvas');
+			canvas.attr('id', 'page-canvas-'+page_id);
+			page_id++;
+			
+			var container = $('<div />').addClass('page-container');
+			var pagination = $('<div />').addClass('pagination');
+			
+			canvas.append(container);
+			canvas.append(pagination);
+			
+			canvas.find('.page-container').append($('<ul />'));
+			canvas.find('.pagination').append($('<ul />'));
+			
+			if(settings.controller) {
+				var prev = $('<li class="page-button prev"><a href="#">« prev</a></li>');
+				canvas.find('.pagination ul').append(prev);
+			}
+			
+			var count = 0;
+			var page = 0;
+			
+			items.each(function(){
+			
+				if(count % settings.item == 0) {
+				
+					page++;
+					
+					var page_element = $('<li />').addClass('page-element page-element-'+page).append(this);
+					var page_button = $('<li class="page-button page-no-'+ page +'"><a href="#">'+ page +'</a></li>');
+					
+					canvas.find('.page-container ul').append(page_element);
+					canvas.find('.pagination ul').append(page_button);
+					
+				} else {
+					canvas.find('li.page-element-'+page).append(this);
+				}
+				count++;
+			});
+			
+			if(settings.controller) {
+				var next = $('<li class="page-button next"><a href="#">next »</a></li>');
+				canvas.find('.pagination ul').append(next);
+			}
+
+			return canvas;
+		}
+		
+		function setCSS(element) {
+			element.css('overflow', 'hidden');
+			element.css('position', 'relative');
+			
+			var items = element.find('li.page-element');
+			
+			items.not(':first-child').css('display', 'none');
+			items.css('float', 'left');
+			items.css('transition', '.6s ease-in-out left');
+			items.css('-webkit-transition', '.6s ease-in-out left');
+			// element.			
+/*
+			if(settings.direction.toLowerCase() == 'horizontal') {
+				
+			} else if(settings.direction.toLowerCase() == 'vertical') {
+				
+			}
+*/
+		}
+		
+		function setActiveState(element) {
+			
+		}
+		
+		pages = {
+			initialized: initialized
+		};
+		
+	})();
+	
+	// ---- Main function ----
+	$.fn.pagination = function(options)
+	{
+		return this.each(function(){
+			
+			var settings = {};
+			var object = $(this).clone();
+			
+			$.extend(settings, defaults, options);
+			
+			var paginator = pages.initialized(object, options);
+			
+			$(this).hide();
+			$(this).parent().append(paginator);
+		});
+	};
+	// ---- End Main Function ----
+	
+})(jQuery)

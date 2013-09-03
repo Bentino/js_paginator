@@ -17,7 +17,7 @@
 		$('#after .content').paginator({
 			item: 2,
 		  	selector: 'section',
-		  	autoslide: 5000,
+		  	autoslide: false,
 		  	controller: true,
 		});
 		

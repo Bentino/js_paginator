@@ -3,7 +3,7 @@
 	var page_id = 1; // Global variable for pagination Id
 
 	var Paginator = function (element, options) {
-		this.element 			= $(element);
+		this.element 			= element;
 		this.canvas				= null;
 		this.items				= null;
 		this.page_active		= null;
@@ -17,6 +17,7 @@
 		this.items = this.element.children(this.settings.selector); 	// Get list items
 		this.canvas = this.build();										// Build pagination element
 		this.element.parent().append(this.canvas);						// Add to document
+		this.element.hide();
 		
 		this.page_active = this.canvas.find('.page-container ul > .page-element').first().addClass('active');
 		this.indicator_active = this.canvas.find('.page-indicator ul > .page-no').first().addClass('active');
@@ -262,7 +263,7 @@
 				that.canvas.find('.page-indicator .pagination').append(page_button);
 				
 			} else {
-				that.canvas.find('li.page-element-'+page).append(this);
+				that.canvas.find('li.page-element-'+page).append($(this).clone());
 			}
 			count++;
 		});

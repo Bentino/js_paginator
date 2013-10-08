@@ -1,0 +1,127 @@
+/* ----- Paginator CSS ----- */
+
+.page-container {
+	position: relative;
+	overflow: hidden;
+	width: 100%;
+}
+
+.page-container ul {
+	padding: 0;
+}
+
+.page-container ul > .page-element {
+	position: relative;
+	display: none;
+	width: 100%;
+	transition: left 0.6s ease-in-out 0s;
+	-webkit-transition: left 0.6s ease-in-out 0s;
+}
+
+.page-canvas.normal .page-container ul > .page-element {
+	transition: left 1s ease-in-out 0s;
+	-webkit-transition: left 0.6s ease-in-out 0s;
+}
+.page-canvas.fast .page-container ul > .page-element {
+	transition: left 0.6s ease-in-out 0s;
+	-webkit-transition: left 0.6s ease-in-out 0s;
+}
+.page-canvas.slow .page-container ul > .page-element {
+	transition: left 2s ease-in-out 0s;
+	-webkit-transition: left 0.6s ease-in-out 0s;
+}
+
+.page-container ul > .active,
+.page-container ul > .next,
+.page-container ul > .prev {
+	display: block;
+}
+
+.page-container ul > .active {
+	left: 0;
+}
+
+.page-container ul > .next,
+.page-container ul > .prev {
+	position: absolute;
+	top: 0;
+	width: 100%;
+} 
+
+.page-container ul > .next {
+	left: 100%;
+}
+
+.page-container ul > .prev {
+	left: -100%;
+}
+
+.page-container ul > .next.left,
+.page-container ul > .prev.right {
+	left: 0;
+}
+
+.page-container ul > .active.left {
+	left: -100%;
+}
+
+.page-container ul > .active.right {
+	left: 100%;
+}
+
+.page-indicator li.page-no a, .page-indicator li.page-no.active a {
+	background-color: transparent;
+	cursor: pointer;
+}
+
+/* ---- End default paginator --- */
+#main-content .page-canvas {
+	text-align: center;
+	margin-top: 70px;
+}
+
+#clients-container .page-canvas {
+	margin-top: 10px;
+}
+.page-container .page-element .feature {
+	display: inline-block;
+	min-width: 30%;
+	margin-left: 10px;
+	margin-right: 10px;
+	margin-bottom: 20px;
+	min-height: 140px;
+	overflow: hidden;
+}
+
+.page-container .page-element li {
+	display: inline-block;
+	margin-left: 5px;
+	margin-right: 5px;
+	margin-bottom: 10px;
+}
+
+.page-container .page-element .feature img {
+	display: inline-block;
+	margin-right: 20px;
+	vertical-align: middle;
+}
+
+.page-container .page-element .feature h3 {
+	display: inline-block;
+}
+
+.page-indicator li.page-no a {
+	border: none;
+	width: 18px;
+	height: 18px;
+	overflow: hidden;
+	text-indent: -9999px;
+	background: transparent url('../img/pagination.png') 0 0 no-repeat;
+}
+.page-indicator li.page-no.active a {
+	background-position: 0 -18px;
+}
+
+.page-indicator .pagination li a {
+	border: none;
+}
